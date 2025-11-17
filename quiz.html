@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Java Quiz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>🧩 Java Quiz</h1>
+    <nav>
+      <a href="dashboard.html">🏠 Home</a>
+      <a href="learn.html">📘 Learn</a>
+      <a href="leaderboard.html">🏆 Leaderboard</a>
+      <a href="profile.html">👤 Profile</a>
+    </nav>
+  </header>
+
+  <main class="quiz-container">
+    <h2 id="question">Loading question...</h2>
+    <div id="options"></div>
+    <button onclick="nextQuestion()">Next</button>
+    <p id="result"></p>
+  </main>
+
+  <script>
+    const quizData = [
+      { q: "Who invented Java?", options: ["Dennis Ritchie", "James Gosling", "Bjarne Stroustrup", "Guido van Rossum"], correct: 1 },
+      { q: "Which keyword is used to inherit a class in Java?", options: ["extends", "inherits", "super", "this"], correct: 0 },
+      { q: "What is JVM?", options: ["Java Virtual Machine", "Java Variable Method", "Just Virtual Machine", "None"], correct: 0 }
+    ];
+
+    let index = 0, score = 0;
+
+    function loadQuestion() {
+      const q = quizData[index];
+      document.getElementById('question').innerText = q.q;
+      const opts = q.options.map((opt, i) => `
+        <label><input type="radio" name="answer" value="${i}"> ${opt}</label><br>
+      `).join('');
+      document.getElementById('options').innerHTML = opts;
+      document.getElementById('result').innerText = '';
+    }
+
+    function nextQuestion() {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) return alert('Please select an answer!');
+      if (parseInt(selected.value) === quizData[index].correct) score++;
+      index++;
+      if (index < quizData.length) loadQuestion();
+      else {
+        document.querySelector('.quiz-container').innerHTML =
+          `<h2>You scored ${score}/${quizData.length} 🎉</h2>`;
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn Java</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📘 Learn Java</h1>
+    <nav>
+      <a href="dashboard.html">🏠 Home</a>
+      <a href="quiz.html">🧩 Quiz</a>
+      <a href="leaderboard.html">🏆 Leaderboard</a>
+      <a href="profile.html">👤 Profile</a>
+    </nav>
+  </header>
+
+  <main class="learn-container">
+    <aside class="topics">
+      <h3>Topics</h3>
+      <ul>
+        <li><a href="#" onclick="showTopic('intro')">Introduction</a></li>
+        <li><a href="#" onclick="showTopic('oop')">Object-Oriented Programming</a></li>
+        <li><a href="#" onclick="showTopic('collections')">Collections</a></li>
+        <li><a href="#" onclick="showTopic('exceptions')">Exception Handling</a></li>
+      </ul>
+    </aside>
+
+    <section class="content" id="content">
+      <h2>Welcome to Java Learning!</h2>
+      <p>Select a topic from the left panel to start learning Java in a fun, gamified way!</p>
+    </section>
+  </main>
+
+  <script>
+    function showTopic(topic) {
+      const content = document.getElementById('content');
+      if (topic === 'intro') {
+        content.innerHTML = `
+          <h2>Introduction to Java</h2>
+          <p>Java is a popular programming language used to build web, desktop, and mobile apps.</p>
+          <pre><code>public class HelloWorld {
+  public static void main(String[] args) {
+    System.out.println("Hello, Java!");
+  }
+}</code></pre>`;
+      } else if (topic === 'oop') {
+        content.innerHTML = `
+          <h2>Object-Oriented Programming</h2>
+          <p>OOP in Java is based on classes, objects, inheritance, polymorphism, and encapsulation.</p>`;
+      } else if (topic === 'collections') {
+        content.innerHTML = `
+          <h2>Collections Framework</h2>
+          <p>Java Collections provide data structures like List, Set, and Map to store and manipulate data.</p>`;
+      } else if (topic === 'exceptions') {
+        content.innerHTML = `
+          <h2>Exception Handling</h2>
+          <p>Exceptions help handle errors gracefully in Java using try-catch blocks.</p>`;
+      }
+    }
+  </script>
+</body>
+</html>
